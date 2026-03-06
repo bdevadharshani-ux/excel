@@ -13,7 +13,8 @@ class Config:
     JWT_ALGORITHM = os.environ.get('JWT_ALGORITHM', 'HS256')
     JWT_ACCESS_TOKEN_EXPIRE_MINUTES = int(os.environ.get('JWT_ACCESS_TOKEN_EXPIRE_MINUTES', 1440))
     
-    EMBEDDING_MODEL = "all-MiniLM-L6-v2"
+    # Use smaller, faster model for Render free tier
+    EMBEDDING_MODEL = "all-MiniLM-L6-v2"  # Fast and lightweight
     RERANKER_MODEL = "cross-encoder/ms-marco-MiniLM-L-6-v2"
     LLM_PROVIDER = "groq"
     LLM_MODEL = "llama-3.3-70b-versatile"
@@ -21,8 +22,8 @@ class Config:
     FAISS_INDEX_PATH = ROOT_DIR / "data" / "faiss_index"
     UPLOAD_DIR = ROOT_DIR / "data" / "uploads"
     
-    TOP_K_RETRIEVAL = 10
-    TOP_K_RERANK = 5
+    TOP_K_RETRIEVAL = 5  # Reduced from 10 for faster processing
+    TOP_K_RERANK = 3     # Reduced from 5 for faster processing
     
 config = Config()
 
